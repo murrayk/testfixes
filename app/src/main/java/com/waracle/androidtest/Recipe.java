@@ -1,7 +1,8 @@
 package com.waracle.androidtest;
 
+
 /**
- * Created by murray on 20/04/2016.
+ * This class is a Value Object containing the Recipe
  */
 public class Recipe {
     private String title;

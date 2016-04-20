@@ -18,7 +18,7 @@ public class StreamUtils {
 
     public static byte[] readUnknownFully(InputStream stream) throws IOException {
         // Read in stream of bytes
-        //really inefficient java just sink a byte array
+        //really inefficient java (using Byte refs wrappers to byte) just sink a byte array stream (designed for this).
 
         InputStream in = new BufferedInputStream(stream);
 

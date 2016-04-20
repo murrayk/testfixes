@@ -40,8 +40,9 @@ public class ImageLoader {
 
         // Can you think of a way to improve loading of bitmaps
         // that have already been loaded previously??
-
-        //cache in memory first -> use local file system.(not written)
+        // PERFORMANCE
+        //cache in memory first -> use local file system.(not implemented)
+        //consider creating thumbsnails resize for device resolution.
         if (bitmapCache.containsKey(url)) {
             return bitmapCache.get(url);
         }
