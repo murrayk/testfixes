@@ -84,6 +84,14 @@ public class PlaceholderFragment extends ListFragment {
         return "UTF-8";
     }
 
+    static class ViewHolder {
+
+        TextView title;
+        TextView desc;
+        ImageView imageView;
+
+    }
+
     private class MyAdapter extends BaseAdapter {
 
         // Can you think of a better way to represent these items???
@@ -113,22 +121,28 @@ public class PlaceholderFragment extends ListFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            View root = inflater.inflate(R.layout.list_item_layout, parent, false);
-            if (root != null) {
-                TextView title = (TextView) root.findViewById(R.id.title);
-                TextView desc = (TextView) root.findViewById(R.id.desc);
-                ImageView imageView = (ImageView) root.findViewById(R.id.image);
+            View rowView = convertView;
+            if(rowView == null) {
+                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                View root = inflater.inflate(R.layout.list_item_layout, parent, false);
+                if (root != null) {
+                    ViewHolder viewHolder = new ViewHolder();
+                    viewHolder.title = (TextView) root.findViewById(R.id.title);
+                    viewHolder.desc = (TextView) root.findViewById(R.id.desc);
+                    viewHolder.imageView = (ImageView) root.findViewById(R.id.image);
+                    rowView.setTag(viewHolder);
 
-                Recipe recipe = getItem(position);
-                title.setText(recipe.getTitle());
-                desc.setText(recipe.getDesc());
-                ImageWorkerTask imageWorkerTask = new ImageWorkerTask(imageView, recipe.getImageUrl());
-                imageWorkerTask.execute();
 
+                }
             }
+            ViewHolder holder = (ViewHolder) rowView.getTag();
+            Recipe recipe = getItem(position);
+            holder.title.setText(recipe.getTitle());
+            holder.desc.setText(recipe.getDesc());
+            ImageWorkerTask imageWorkerTask = new ImageWorkerTask(holder.imageView, recipe.getImageUrl());
+            imageWorkerTask.execute();
 
-            return root;
+            return rowView;
         }
 
 
