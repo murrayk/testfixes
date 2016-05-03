@@ -124,12 +124,12 @@ public class PlaceholderFragment extends ListFragment {
             View rowView = convertView;
             if(rowView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
-                View root = inflater.inflate(R.layout.list_item_layout, parent, false);
-                if (root != null) {
+                rowView = inflater.inflate(R.layout.list_item_layout, parent, false);
+                if (rowView != null) {
                     ViewHolder viewHolder = new ViewHolder();
-                    viewHolder.title = (TextView) root.findViewById(R.id.title);
-                    viewHolder.desc = (TextView) root.findViewById(R.id.desc);
-                    viewHolder.imageView = (ImageView) root.findViewById(R.id.image);
+                    viewHolder.title = (TextView) rowView.findViewById(R.id.title);
+                    viewHolder.desc = (TextView) rowView.findViewById(R.id.desc);
+                    viewHolder.imageView = (ImageView) rowView.findViewById(R.id.image);
                     rowView.setTag(viewHolder);
 
 
